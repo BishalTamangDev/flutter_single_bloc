@@ -10,6 +10,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<HomeInitialEvent>(homeInitialEvent);
+    on<HomeSnackbarEvent>(homeSnackbarEvent);
   }
 
   FutureOr<void> homeInitialEvent(event, state) async {
@@ -20,5 +21,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Random().nextBool()
         ? emit(HomeLoadingSuccessState())
         : emit(HomeLoadingFailureState());
+  }
+
+  homeSnackbarEvent(event, state) {
+    emit(HomeScackbarState());
   }
 }

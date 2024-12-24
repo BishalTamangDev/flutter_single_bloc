@@ -28,6 +28,13 @@ class _HomeState extends State<Home> {
       buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
         switch (state.runtimeType) {
+          case HomeScackbarState:
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Hello World!"),
+              ),
+            );
+            break;
           default:
             log("Listener activated");
         }
@@ -57,12 +64,17 @@ class _HomeState extends State<Home> {
                 title: const Text("Home"),
                 centerTitle: true,
               ),
-              body: const Center(
+              body: Center(
                 child: Column(
                   spacing: 16.0,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text("Home page loaded successfully!"),
+                    OutlinedButton(
+                        onPressed: () {
+                          homeBloc.add(HomeSnackbarEvent());
+                        },
+                        child: const Text("Show Snackbar")),
                   ],
                 ),
               ),

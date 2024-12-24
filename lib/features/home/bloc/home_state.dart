@@ -13,3 +13,5 @@ class HomeLoadingFailureState extends HomeState {}
 
 // action state
 abstract class HomeActionState extends HomeState {}
+
+class HomeScackbarState extends HomeActionState {}
