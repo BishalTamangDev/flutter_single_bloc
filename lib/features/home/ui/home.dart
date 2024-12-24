@@ -29,6 +29,9 @@ class _HomeState extends State<Home> {
       listener: (context, state) {
         switch (state.runtimeType) {
           case HomeScackbarState:
+            if(ScaffoldMessenger.of(context).mounted) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            }
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text("Hello World!"),
